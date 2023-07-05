@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { ProductsModule } from './products/products.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Product } from './products/entities/product.entity';
-import { CategorisModule } from './categoris/categoris.module';
+import { CategorysModule } from './categorys/categorys.module';
 import { StatesProductsModule } from './states-products/states-products.module';
 
 @Module({
@@ -20,7 +20,7 @@ import { StatesProductsModule } from './states-products/states-products.module';
       synchronize: true,
     }),
     TypeOrmModule.forFeature([Product]),
-    CategorisModule,
+    CategorysModule,
     StatesProductsModule,
   ],
   controllers: [AppController],
