@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Category } from './entities/categorys.entity';
-
+import { ErrorFilter } from 'src/utils/errorManager';
 @Injectable()
 export class CategorysService {
   constructor(
@@ -11,8 +11,12 @@ export class CategorysService {
   ) {}
 
   async findAll() {
-    const data = await this.categoryRepository.find();
-    console.log(data);
-    return data;
+    try {
+      const data = await this.categoryRepository.find();
+      console.log(data);
+      return data;
+    } catch (error) {
+      return new ErrorFilter();
+    }
   }
 }
