@@ -18,7 +18,9 @@ export class ProductsService {
   }
 
   async findAll() {
-    return await this.productRepository.find();
+    const data = await this.productRepository.find();
+    console.log(data);
+    return data;
   }
 
   findOne(id: number) {
