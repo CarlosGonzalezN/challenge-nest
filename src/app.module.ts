@@ -6,6 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Product } from './products/entities/product.entity';
 import { CategorysModule } from './categorys/categorys.module';
 import { StatesProductsModule } from './states-products/states-products.module';
+import { States } from './states-products/entities/states-product.entity';
+import { Category } from './categorys/entities/categorys.entity';
 
 @Module({
   imports: [
@@ -16,10 +18,10 @@ import { StatesProductsModule } from './states-products/states-products.module';
       port: 3306,
       username: 'root',
       database: 'challenge',
-      entities: [Product],
+      entities: [Product, States, Category],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([Product]),
+    TypeOrmModule.forFeature([Product, States, Category]),
     CategorysModule,
     StatesProductsModule,
   ],

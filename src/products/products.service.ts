@@ -17,8 +17,8 @@ export class ProductsService {
     return await this.productRepository.save(productos);
   }
 
-  findAll() {
-    return this.productRepository.find();
+  async findAll() {
+    return await this.productRepository.find();
   }
 
   findOne(id: number) {

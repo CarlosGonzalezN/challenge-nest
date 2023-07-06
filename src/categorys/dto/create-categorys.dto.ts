@@ -1,1 +1,3 @@
-export class CreateCategorysDto {}
+export class CreateCategorysDto {
+  'nombre_categoria': string;
+}
