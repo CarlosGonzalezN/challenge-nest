@@ -32,14 +32,24 @@ export class ProductsService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} product`;
+    try {
+      return `This action returns a #${id} product`;
+    } catch (error) {}
   }
 
   update(id: number, updateProductDto: UpdateProductDto) {
-    return `This action updates a #${id} product`;
+    try {
+      return `This action returns a #${id} product`;
+    } catch (error) {
+      return new ErrorFilter();
+    }
   }
 
   remove(id: number) {
-    return `This action removes a #${id} product`;
+    try {
+      return `This action returns a #${id} product`;
+    } catch (error) {
+      return new ErrorFilter();
+    }
   }
 }
