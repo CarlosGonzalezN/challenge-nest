@@ -1,3 +1,5 @@
+import { States } from 'src/states-products/entities/states-product.entity';
+import { Category } from 'src/categorys/entities/categorys.entity';
 export class CreateProductDto {
   sku: number;
   id_categoria: number;
@@ -5,4 +7,7 @@ export class CreateProductDto {
   descripcion: string;
   precio: number;
   id_estado: number;
+
+  nombre_estado: string;
+  nombre_categoria: string;
 }

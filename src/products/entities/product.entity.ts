@@ -1,15 +1,25 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
+import { Category } from '../../categorys/entities/categorys.entity';
+import { States } from '../../states-products/entities/states-product.entity';
 
 @Entity({ name: 'productos' })
 export class Product {
+  [x: string]: any;
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
   sku: number;
 
-  @Column()
-  id_categoria: number;
+  @ManyToOne(() => Category)
+  @JoinColumn({ name: 'id_categoria' })
+  id_categoria: Category['id'];
 
   @Column()
   nombre_producto: string;
@@ -20,6 +30,11 @@ export class Product {
   @Column('decimal', { precision: 10, scale: 2 })
   precio: number;
 
-  @Column()
+  @ManyToOne(() => States)
+  @JoinColumn({ name: 'id_estado' })
   id_estado: number;
+
+  nombre_estado: string;
+  nombre_categoria: string;
+  estado: any;
 }

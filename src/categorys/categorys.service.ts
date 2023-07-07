@@ -13,7 +13,6 @@ export class CategorysService {
   async findAll() {
     try {
       const data = await this.categoryRepository.find();
-      console.log(data);
       return data;
     } catch (error) {
       return new ErrorFilter();
