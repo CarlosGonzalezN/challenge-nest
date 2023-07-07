@@ -21,28 +21,12 @@ export class ProductsService {
   async create(createProductDto: CreateProductDto) {
     try {
       const product = new Product();
-      console.log('llega', createProductDto);
-
       product.sku = createProductDto.sku;
       product.nombre_producto = createProductDto.nombre_producto;
       product.descripcion = createProductDto.descripcion;
       product.precio = createProductDto.precio;
-
-      // Obtener el ID de la categoría por el nombre
-      const categoria = await this.categoryRepository.findOne({
-        where: {
-          nombre_categoria: createProductDto.nombre_categoria,
-        },
-      });
-      product.id_categoria = categoria.id;
-
-      // Obtener el ID del estado por el nombre
-      const estado = await this.stateRepository.findOne({
-        where: { nombre_estado: createProductDto.nombre_estado },
-      });
-      product.id_estado = estado.id;
-      console.log(categoria, estado);
-
+      product.id_categoria = createProductDto.id_categoria;
+      product.id_estado = createProductDto.id_estado;
       return await this.productRepository.save(product);
     } catch (error) {
       return new ErrorFilter();
@@ -63,26 +47,39 @@ export class ProductsService {
 
   async findOne(id: number) {
     try {
-      const data = await this.productRepository.find();
-      console.log(data);
-      return data;
+      const product = await this.productRepository.findOne({ where: { id } });
+      return product;
     } catch (error) {
+      // Manejo del error
       return new ErrorFilter();
     }
   }
 
-  update(id: number, updateProductDto: UpdateProductDto) {
+  async update(
+    id: number,
+    updateProductDto: UpdateProductDto,
+  ): Promise<Product> {
     try {
-      return `This action returns a #${id} product`;
+      const product = await this.productRepository.findOne({ where: { id } });
+
+      // Aplicar los cambios del DTO al objeto del producto
+      Object.assign(product, updateProductDto);
+
+      // Guardar el producto actualizado en la base de datos
+      const updatedProduct = await this.productRepository.save(product);
+
+      return updatedProduct;
     } catch (error) {
-      return new ErrorFilter();
+      return;
     }
   }
 
-  remove(id: number) {
+  async remove(id: number) {
     try {
-      return `This action returns a #${id} product`;
+      const deleteResult = await this.productRepository.delete(id);
+      return { deleted: true };
     } catch (error) {
+      // Manejo del error
       return new ErrorFilter();
     }
   }
