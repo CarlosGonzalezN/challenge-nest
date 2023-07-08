@@ -15,7 +15,7 @@ export class Product {
   id: number;
 
   @Column()
-  sku: number;
+  sku: string;
 
   @ManyToOne(() => Category)
   @JoinColumn({ name: 'id_categoria' })
