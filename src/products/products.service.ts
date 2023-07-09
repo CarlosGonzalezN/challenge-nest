@@ -4,9 +4,9 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Product } from './entities/product.entity';
-import { ErrorFilter } from 'src/utils/errorManager';
-import { Category } from 'src/categorys/entities/categorys.entity';
-import { States } from 'src/states-products/entities/states-product.entity';
+import { ErrorFilter } from '../utils/errorManager';
+import { Category } from '../categorys/entities/categorys.entity';
+import { States } from '../states-products/entities/states-product.entity';
 @Injectable()
 export class ProductsService {
   constructor(
