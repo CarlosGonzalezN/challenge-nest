@@ -55,10 +55,7 @@ export class ProductsService {
     }
   }
 
-  async update(
-    id: number,
-    updateProductDto: UpdateProductDto,
-  ): Promise<Product> {
+  async update(id: number, updateProductDto: UpdateProductDto) {
     try {
       const product = await this.productRepository.findOne({ where: { id } });
 
@@ -70,7 +67,8 @@ export class ProductsService {
 
       return updatedProduct;
     } catch (error) {
-      return;
+      // Manejo del error
+      console.log(error);
     }
   }
 

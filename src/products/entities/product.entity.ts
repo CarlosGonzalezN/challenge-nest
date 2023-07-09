@@ -36,5 +36,4 @@ export class Product {
 
   nombre_estado: string;
   nombre_categoria: string;
-  estado: any;
 }
