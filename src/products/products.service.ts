@@ -34,12 +34,29 @@ export class ProductsService {
   }
   async findAll() {
     try {
-      const products = await this.productRepository.find();
-
-      const result = products;
-      console.log(result);
-
-      return result;
+      const products = await this.productRepository
+        .createQueryBuilder('product')
+        .leftJoinAndSelect('product.id_categoria', 'categoria')
+        .leftJoinAndSelect('product.id_estado', 'estado')
+        .select([
+          'product.id',
+          'product.sku',
+          'product.nombre_producto',
+          'product.descripcion',
+          'product.precio',
+          'categoria.nombre_categoria AS id_categoria',
+          'estado.nombre_estado AS id_estado',
+        ])
+        .getRawMany();
+      return products.map((product) => ({
+        id: product.product_id,
+        sku: product.product_sku,
+        nombre_producto: product.product_nombre_producto,
+        descripcion: product.product_descripcion,
+        precio: product.product_precio,
+        id_categoria: product.id_categoria,
+        id_estado: product.id_estado,
+      }));
     } catch (error) {
       return new ErrorFilter();
     }
