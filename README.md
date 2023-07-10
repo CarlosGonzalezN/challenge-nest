@@ -56,12 +56,14 @@ npm (v6.14.0 o superior)
 
 1. Clona el repositorio de Challenge Nest:
 
-git clone <URL del repositorio> 2. Instala las dependencias:
+git clone https://github.com/CarlosGonzalezN/challenge-nest
+
+2. Instala las dependencias:
 
 npm install
 
-csharp
-Copy code
+prara iniciar ejecurat
+npm run start:dev
 
 ## Configuración de la base de datos
 
@@ -87,23 +89,6 @@ Copy code
 
 Challenge Nest es una aplicación desarrollada en el framework Nest.js. Es una aplicación que gestiona productos y categorías en una base de datos MySQL. Proporciona una API RESTful para realizar operaciones CRUD en los productos y categorías.
 
-## Requisitos
-
-Node.js (v14.17.0 o superior)
-npm (v6.14.0 o superior)
-- MySQL
-
-## Instalación
-
-1. Clona el repositorio de Challenge Nest:
-
-git clone <URL del repositorio>
-2. Instala las dependencias:
-
-npm install
-
-csharp
-Copy code
 
 
 
